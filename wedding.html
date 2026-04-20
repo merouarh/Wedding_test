@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarah & James — Forever Begins Here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================
+   CSS VARIABLES & RESET
+   ========================================= */
+:root {
+  --cream: #FAF7F2;
+  --ivory: #F5F0E8;
+  --blush: #E8D5C4;
+  --rose: #C4907A;
+  --rose-dark: #9E6B58;
+  --sage: #8A9E8C;
+  --sage-light: #B5C4B1;
+  --charcoal: #2C2C2C;
+  --warm-gray: #7A7572;
+  --gold: #C9A96E;
+  --gold-light: #E8D5A3;
+  --white: #FFFFFF;
+
+  --font-display: 'Great Vibes', cursive;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Jost', sans-serif;
+
+  --section-pad: clamp(80px, 10vw, 140px);
+  --transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+a { color: inherit; text-decoration: none; }
+
+/* =========================================
+   CUSTOM SCROLLBAR
+   ========================================= */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 2px; }
+
+/* =========================================
+   NAV
+   ========================================= */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s ease, padding 0.4s ease;
+}
+
+nav.scrolled {
+  background: rgba(250, 247, 242, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 16px 40px;
+  box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--white);
+  transition: color 0.4s;
+}
+
+nav.scrolled .nav-logo { color: var(--rose-dark); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--gold-light); }
+
+nav.scrolled .nav-links a { color: var(--warm-gray); }
+nav.scrolled .nav-links a:hover { color: var(--rose-dark); }
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--white);
+  transition: all 0.3s;
+}
+
+nav.scrolled .hamburger span { background: var(--charcoal); }
+
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--cream);
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+}
+
+.mobile-menu.open { display: flex; }
+
+.mobile-menu a {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--charcoal);
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+}
+
+.mobile-menu a:hover { color: var(--rose); }
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+#hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ---- IMAGE PLACEHOLDER ---- */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  /* 
+    ===================================================
+    HERO BACKGROUND IMAGE
+    Replace the background-color + gradient below with:
+    background-image: url('your-hero-photo.jpg');
+    background-size: cover;
+    background-position: center top;
+    ===================================================
+  */
+  background-color: #C4B0A0;
+  background-image:
+    linear-gradient(160deg,
+      rgba(156, 120, 100, 0.7) 0%,
+      rgba(100, 85, 75, 0.5) 50%,
+      rgba(60, 50, 45, 0.8) 100%);
+  transform: scale(1.1);
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(30,20,15,0.2) 0%,
+    rgba(30,20,15,0.15) 50%,
+    rgba(30,20,15,0.5) 100%
+  );
+}
+
+/* Floating botanical elements */
+.hero-botanical {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  animation: botanicalIn 1.4s ease forwards;
+}
+
+.hero-botanical-left {
+  left: -30px;
+  bottom: 5%;
+  width: clamp(180px, 25vw, 360px);
+  animation-delay: 0.8s;
+}
+
+.hero-botanical-right {
+  right: -20px;
+  top: 8%;
+  width: clamp(140px, 20vw, 280px);
+  animation-delay: 1s;
+  transform: scaleX(-1);
+}
+
+@keyframes botanicalIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 0.7; transform: translateY(0); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: var(--white);
+  padding: 0 24px;
+}
+
+.hero-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease 0.3s forwards;
+}
+
+.hero-names {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 12vw, 10rem);
+  line-height: 1;
+  color: var(--white);
+  margin: 8px 0 16px;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease 0.6s forwards;
+  text-shadow: 0 4px 40px rgba(0,0,0,0.25);
+}
+
+.hero-ampersand {
+  color: var(--gold-light);
+  display: block;
+  font-size: 0.6em;
+  margin: -8px 0;
+}
+
+.hero-date {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.85);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s ease 0.9s forwards;
+}
+
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 24px auto;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.1s forwards;
+}
+
+.hero-divider-line {
+  width: 60px;
+  height: 1px;
+  background: rgba(255,255,255,0.4);
+}
+
+.hero-divider-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--gold-light);
+  transform: rotate(45deg);
+}
+
+.hero-cta {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 14px 36px;
+  border: 1px solid rgba(255,255,255,0.5);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.3s forwards;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.hero-cta:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: var(--white);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 1.6s forwards;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+  animation: scrollPulse 2s ease infinite 2s;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.6); opacity: 0.4; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   SECTION COMMON
+   ========================================= */
+.section-header {
+  text-align: center;
+  margin-bottom: clamp(48px, 6vw, 80px);
+}
+
+.section-tag {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rose);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--charcoal);
+  letter-spacing: 0.02em;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--rose);
+}
+
+.section-body {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--warm-gray);
+  max-width: 560px;
+  margin: 16px auto 0;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* =========================================
+   SECTION DIVIDER (decorative)
+   ========================================= */
+.floral-divider {
+  text-align: center;
+  padding: 24px 0;
+  color: var(--sage-light);
+  font-size: 1.4rem;
+  letter-spacing: 12px;
+}
+
+/* =========================================
+   INTRO / STORY SECTION
+   ========================================= */
+#story {
+  padding: var(--section-pad) clamp(24px, 6vw, 80px);
+  position: relative;
+  overflow: hidden;
+}
+
+#story::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  font-family: var(--font-display);
+  font-size: 20rem;
+  color: var(--blush);
+  opacity: 0.3;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.story-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: center;
+}
+
+/* ---- IMAGE PLACEHOLDER ---- */
+.story-image-wrap {
+  position: relative;
+  /*
+    =============================================
+    STORY SECTION IMAGE
+    Set height and add your image inside:
+    <div class="story-image-wrap">
+      <img src="your-couple-photo.jpg" alt="...">
+    </div>
+    =============================================
+  */
+  aspect-ratio: 3/4;
+  background-color: var(--blush);
+  background-image: linear-gradient(135deg, #E0C9BA 0%, #C4A08A 100%);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.story-image-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 80%;
+  height: 80%;
+  border: 1px solid var(--rose);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.story-image-label {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: var(--white);
+  padding: 12px 20px;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--warm-gray);
+}
+
+.story-text { padding: 20px 0; }
+
+.story-text .section-title {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.story-text .section-tag { text-align: left; }
+
+.story-paragraph {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--warm-gray);
+  margin-bottom: 20px;
+}
+
+.story-signature {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--rose);
+  margin-top: 32px;
+}
+
+/* =========================================
+   PARALLAX QUOTE BAND
+   ========================================= */
+.parallax-band {
+  position: relative;
+  height: clamp(280px, 40vw, 420px);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- IMAGE PLACEHOLDER ---- */
+.parallax-band-bg {
+  position: absolute;
+  inset: -30%;
+  /*
+    =============================================
+    PARALLAX BAND BACKGROUND IMAGE
+    Replace with:
+    background-image: url('your-venue-or-couple-photo.jpg');
+    background-size: cover;
+    background-position: center;
+    =============================================
+  */
+  background-color: #8A7060;
+  background-image: linear-gradient(
+    135deg,
+    rgba(100, 80, 65, 0.9),
+    rgba(60, 45, 38, 0.95)
+  );
+  will-change: transform;
+}
+
+.parallax-band-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(35, 25, 20, 0.55);
+}
+
+.parallax-band-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--white);
+  padding: 0 clamp(24px, 8vw, 120px);
+  max-width: 900px;
+}
+
+.band-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 3.5vw, 2.4rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.02em;
+}
+
+.band-attribution {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.band-attribution::before,
+.band-attribution::after {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  background: var(--gold-light);
+  opacity: 0.5;
+}
+
+/* =========================================
+   DETAILS SECTION
+   ========================================= */
+#details {
+  padding: var(--section-pad) clamp(24px, 6vw, 80px);
+  background: var(--ivory);
+}
+
+.details-inner { max-width: 1100px; margin: 0 auto; }
+
+.details-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  margin-top: 60px;
+}
+
+.detail-card {
+  background: var(--white);
+  padding: clamp(32px, 4vw, 52px) clamp(24px, 3vw, 40px);
+  text-align: center;
+  position: relative;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.detail-card:hover {
+  border-color: var(--rose);
+  transform: translateY(-6px);
+}
+
+.detail-card-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 20px;
+  color: var(--rose);
+}
+
+.detail-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 12px;
+  letter-spacing: 0.03em;
+}
+
+.detail-card-text {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--warm-gray);
+}
+
+.detail-card-text strong {
+  display: block;
+  font-weight: 500;
+  color: var(--charcoal);
+  font-size: 0.92rem;
+  margin-bottom: 4px;
+}
+
+.detail-card-badge {
+  position: absolute;
+  top: -1px;
+  right: 24px;
+  background: var(--rose);
+  color: var(--white);
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+}
+
+/* Map */
+.map-wrap {
+  margin-top: 60px;
+  /*
+    =============================================
+    MAP EMBED
+    Replace the placeholder below with an
+    actual Google Maps iframe:
+    <iframe src="..." ...></iframe>
+    =============================================
+  */
+  background: var(--blush);
+  height: 320px;
+  border-radius: 2px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--warm-gray);
+  position: relative;
+}
+
+.map-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.map-placeholder-text { position: relative; z-index: 1; text-align: center; }
+.map-placeholder-text small {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--rose);
+  margin-top: 8px;
+}
+
+/* =========================================
+   SCHEDULE / TIMELINE
+   ========================================= */
+#schedule {
+  padding: var(--section-pad) clamp(24px, 6vw, 80px);
+  position: relative;
+}
+
+.schedule-inner { max-width: 800px; margin: 0 auto; }
+
+.timeline {
+  position: relative;
+  margin-top: 60px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--blush);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  gap: 0;
+  margin-bottom: 52px;
+  align-items: start;
+}
+
+.timeline-item:last-child { margin-bottom: 0; }
+
+.timeline-left { text-align: right; padding-right: 36px; }
+.timeline-right { text-align: left; padding-left: 36px; }
+
+.timeline-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4px;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--white);
+  border: 2px solid var(--rose);
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.timeline-time {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--rose);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.timeline-event {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 6px;
+}
+
+.timeline-desc {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--warm-gray);
+  line-height: 1.7;
+}
+
+/* Alternating: even items flip */
+.timeline-item:nth-child(even) .timeline-left { order: 3; text-align: left; padding-right: 0; padding-left: 36px; }
+.timeline-item:nth-child(even) .timeline-center { order: 2; }
+.timeline-item:nth-child(even) .timeline-right { order: 1; text-align: right; padding-left: 0; padding-right: 36px; }
+
+/* =========================================
+   PARALLAX PHOTO BAND 2
+   ========================================= */
+.parallax-band-2 {
+  position: relative;
+  height: clamp(220px, 30vw, 340px);
+  overflow: hidden;
+}
+
+/* ---- IMAGE PLACEHOLDER ---- */
+.parallax-band-2-bg {
+  position: absolute;
+  inset: -30%;
+  /*
+    =============================================
+    PARALLAX BAND 2 BACKGROUND IMAGE
+    Replace with:
+    background-image: url('your-ring-or-flowers-photo.jpg');
+    background-size: cover;
+    background-position: center;
+    =============================================
+  */
+  background-color: #B5A090;
+  background-image: linear-gradient(135deg, #CDB8A8 0%, #9A8070 100%);
+  will-change: transform;
+}
+
+/* =========================================
+   RSVP SECTION
+   ========================================= */
+#rsvp {
+  padding: var(--section-pad) clamp(24px, 6vw, 80px);
+  background: var(--charcoal);
+  position: relative;
+  overflow: hidden;
+}
+
+#rsvp::before {
+  content: 'RSVP';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: var(--font-serif);
+  font-size: 18rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.03);
+  pointer-events: none;
+  letter-spacing: 0.2em;
+}
+
+.rsvp-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+#rsvp .section-tag { color: var(--gold-light); }
+#rsvp .section-title { color: var(--white); }
+#rsvp .section-body { color: rgba(255,255,255,0.5); }
+
+.rsvp-form {
+  margin-top: 52px;
+  display: grid;
+  gap: 20px;
+}
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+
+.form-group label {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 1px;
+  padding: 14px 18px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--white);
+  outline: none;
+  transition: border-color 0.3s, background 0.3s;
+  width: 100%;
+  appearance: none;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='rgba(255,255,255,0.4)'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.form-group select option { background: var(--charcoal); }
+
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--rose);
+  background: rgba(255,255,255,0.08);
+}
+
+.form-group textarea { resize: vertical; min-height: 100px; }
+
+.form-radio-group {
+  display: flex;
+  gap: 16px;
+}
+
+.form-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+}
+
+.form-radio input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  cursor: pointer;
+  accent-color: var(--rose);
+}
+
+.btn-submit {
+  margin-top: 12px;
+  padding: 18px 48px;
+  background: var(--rose);
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  align-self: flex-start;
+}
+
+.btn-submit:hover {
+  background: var(--rose-dark);
+  transform: translateY(-2px);
+}
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 40px;
+  background: rgba(255,255,255,0.05);
+}
+
+.form-success.visible { display: block; }
+
+.form-success-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.form-success-title {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+}
+
+.form-success-text {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+}
+
+/* =========================================
+   GUEST MESSAGES
+   ========================================= */
+#messages {
+  padding: var(--section-pad) clamp(24px, 6vw, 80px);
+  background: var(--ivory);
+}
+
+.messages-inner { max-width: 1000px; margin: 0 auto; }
+
+.message-form-wrap {
+  background: var(--white);
+  padding: clamp(32px, 4vw, 52px);
+  margin-bottom: 60px;
+}
+
+.message-form {
+  display: grid;
+  gap: 16px;
+}
+
+.message-form input,
+.message-form textarea {
+  background: var(--cream);
+  border: 1px solid var(--blush);
+  padding: 14px 18px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--charcoal);
+  outline: none;
+  transition: border-color 0.3s;
+  width: 100%;
+  border-radius: 1px;
+}
+
+.message-form textarea { resize: vertical; min-height: 100px; }
+
+.message-form input:focus,
+.message-form textarea:focus { border-color: var(--rose); }
+
+.message-form input::placeholder,
+.message-form textarea::placeholder { color: var(--warm-gray); opacity: 0.6; }
+
+.btn-message {
+  padding: 16px 36px;
+  background: var(--charcoal);
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+  cursor: pointer;
+  transition: background 0.3s;
+  align-self: flex-start;
+}
+
+.btn-message:hover { background: var(--rose-dark); }
+
+.messages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.message-card {
+  background: var(--white);
+  padding: 28px 28px 32px;
+  position: relative;
+  border-left: 3px solid var(--blush);
+  transition: border-color 0.3s;
+}
+
+.message-card:hover { border-color: var(--rose); }
+
+.message-card-quote {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--charcoal);
+  margin-bottom: 16px;
+}
+
+.message-card-author {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--rose);
+}
+
+.message-card-heart {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1rem;
+  color: var(--blush);
+}
+
+/* =========================================
+   REGISTRY SECTION
+   ========================================= */
+#registry {
+  padding: var(--section-pad) clamp(24px, 6vw, 80px);
+}
+
+.registry-inner { max-width: 900px; margin: 0 auto; }
+
+.registry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 36px);
+  margin-top: 60px;
+}
+
+.registry-card {
+  text-align: center;
+  padding: clamp(28px, 4vw, 48px) 24px;
+  border: 1px solid var(--blush);
+  transition: border-color 0.3s, transform 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.registry-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--rose);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s ease;
+  z-index: 0;
+}
+
+.registry-card:hover::before { transform: scaleY(1); }
+.registry-card:hover { border-color: var(--rose); transform: translateY(-4px); }
+.registry-card:hover * { color: var(--white); }
+.registry-card:hover .registry-card-icon { color: rgba(255,255,255,0.8); }
+
+.registry-card > * { position: relative; z-index: 1; transition: color 0.4s; }
+
+.registry-card-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: var(--rose);
+}
+
+.registry-card-name {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 8px;
+}
+
+.registry-card-desc {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--warm-gray);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.registry-card-link {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rose);
+  padding: 8px 20px;
+  border: 1px solid currentColor;
+  transition: color 0.4s, border-color 0.4s;
+}
+
+.registry-note {
+  text-align: center;
+  margin-top: 48px;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--warm-gray);
+  line-height: 1.7;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+footer {
+  background: var(--charcoal);
+  padding: 60px clamp(24px, 6vw, 80px) 32px;
+  text-align: center;
+}
+
+.footer-names {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: rgba(255,255,255,0.15);
+  margin-bottom: 8px;
+}
+
+.footer-date {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 32px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.footer-links a {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  transition: color 0.3s;
+}
+
+.footer-links a:hover { color: var(--rose); }
+
+.footer-credit {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.2);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 24px;
+}
+
+/* =========================================
+   COUNTDOWN
+   ========================================= */
+.countdown-wrap {
+  display: flex;
+  justify-content: center;
+  gap: clamp(20px, 4vw, 60px);
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.countdown-item {
+  text-align: center;
+}
+
+.countdown-number {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 300;
+  color: var(--charcoal);
+  line-height: 1;
+  display: block;
+}
+
+.countdown-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-top: 8px;
+  display: block;
+}
+
+.countdown-section {
+  padding: clamp(60px, 8vw, 100px) clamp(24px, 6vw, 80px);
+  text-align: center;
+  background: var(--white);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 900px) {
+  .story-grid { grid-template-columns: 1fr; }
+  .story-image-wrap { aspect-ratio: 4/3; }
+  .details-cards { grid-template-columns: 1fr; }
+  .registry-grid { grid-template-columns: 1fr 1fr; }
+  .timeline::before { left: 24px; }
+  .timeline-item { grid-template-columns: 24px 1fr; gap: 0 20px; }
+  .timeline-item:nth-child(even) .timeline-left { order: unset; text-align: left; padding: 0; }
+  .timeline-item:nth-child(even) .timeline-center { order: unset; }
+  .timeline-item:nth-child(even) .timeline-right { order: unset; text-align: left; padding-left: 20px; }
+  .timeline-left { display: none; }
+  .timeline-center { justify-content: flex-start; padding: 0; }
+  .timeline-right { padding-left: 20px; padding-right: 0; text-align: left; }
+}
+
+@media (max-width: 640px) {
+  nav { padding: 20px 24px; }
+  nav.scrolled { padding: 14px 24px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .form-row { grid-template-columns: 1fr; }
+  .registry-grid { grid-template-columns: 1fr; }
+  .hero-botanical-left, .hero-botanical-right { display: none; }
+}
+
+/* =========================================
+   SCROLL PROGRESS BAR
+   ========================================= */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--rose);
+  z-index: 200;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">S & J</div>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#details">Details</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#rsvp">RSVP</a></li>
+    <li><a href="#messages">Messages</a></li>
+    <li><a href="#registry">Registry</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#story" onclick="toggleMenu()">Our Story</a>
+  <a href="#details" onclick="toggleMenu()">Details</a>
+  <a href="#schedule" onclick="toggleMenu()">Schedule</a>
+  <a href="#rsvp" onclick="toggleMenu()">RSVP</a>
+  <a href="#messages" onclick="toggleMenu()">Messages</a>
+  <a href="#registry" onclick="toggleMenu()">Registry</a>
+</div>
+
+<!-- ==========================================
+     HERO
+     ========================================== -->
+<section id="hero">
+
+  <!-- 
+    ============================================================
+    HERO BACKGROUND IMAGE
+    Replace this div's CSS with your actual photo:
+      In the <style> block, find .hero-bg and set:
+      background-image: url('your-photo.jpg');
+      background-color: transparent; (remove the gradient)
+    Or add an <img> tag inside this div:
+      <img src="your-photo.jpg" alt="Sarah and James">
+    ============================================================
+  -->
+  <div class="hero-bg" id="heroBg"></div>
+
+  <!-- Decorative botanical SVG - left -->
+  <svg class="hero-botanical hero-botanical-left" viewBox="0 0 300 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M150 480 Q80 380 120 280 Q160 180 100 80" stroke="white" stroke-width="1.5" fill="none"/>
+    <path d="M120 280 Q60 260 20 200" stroke="white" stroke-width="1" fill="none"/>
+    <path d="M120 280 Q80 320 40 310" stroke="white" stroke-width="1" fill="none"/>
+    <path d="M135 340 Q70 330 30 370" stroke="white" stroke-width="1" fill="none"/>
+    <ellipse cx="60" cy="195" rx="25" ry="15" fill="white" opacity="0.3" transform="rotate(-30 60 195)"/>
+    <ellipse cx="38" cy="305" rx="20" ry="12" fill="white" opacity="0.25" transform="rotate(20 38 305)"/>
+    <ellipse cx="28" cy="372" rx="22" ry="13" fill="white" opacity="0.2" transform="rotate(-10 28 372)"/>
+    <circle cx="100" cy="78" r="12" fill="white" opacity="0.4"/>
+    <circle cx="95" cy="60" r="8" fill="white" opacity="0.3"/>
+    <circle cx="112" cy="65" r="6" fill="white" opacity="0.25"/>
+  </svg>
+
+  <!-- Decorative botanical SVG - right -->
+  <svg class="hero-botanical hero-botanical-right" viewBox="0 0 300 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M150 20 Q80 120 120 220 Q160 320 100 420" stroke="white" stroke-width="1.5" fill="none"/>
+    <path d="M120 220 Q60 200 20 260" stroke="white" stroke-width="1" fill="none"/>
+    <path d="M120 220 Q80 180 40 190" stroke="white" stroke-width="1" fill="none"/>
+    <ellipse cx="55" cy="262" rx="25" ry="15" fill="white" opacity="0.3" transform="rotate(25 55 262)"/>
+    <ellipse cx="38" cy="185" rx="20" ry="12" fill="white" opacity="0.25" transform="rotate(-15 38 185)"/>
+    <circle cx="100" cy="422" r="14" fill="white" opacity="0.35"/>
+    <circle cx="88" cy="438" r="9" fill="white" opacity="0.25"/>
+  </svg>
+
+  <div class="hero-content">
+    <span class="hero-label">We're Getting Married</span>
+    <h1 class="hero-names">
+      Sarah
+      <span class="hero-ampersand">&</span>
+      James
+    </h1>
+    <p class="hero-date">September 14, 2025 &nbsp;·&nbsp; Tuscany, Italy</p>
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <div class="hero-divider-diamond"></div>
+      <div class="hero-divider-line"></div>
+    </div>
+    <a href="#rsvp" class="hero-cta">Confirm Your Attendance</a>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ==========================================
+     COUNTDOWN
+     ========================================== -->
+<section class="countdown-section reveal">
+  <span class="section-tag">Days Until We Say I Do</span>
+  <div class="countdown-wrap" id="countdown">
+    <div class="countdown-item"><span class="countdown-number" id="cd-days">00</span><span class="countdown-label">Days</span></div>
+    <div class="countdown-item"><span class="countdown-number" id="cd-hours">00</span><span class="countdown-label">Hours</span></div>
+    <div class="countdown-item"><span class="countdown-number" id="cd-minutes">00</span><span class="countdown-label">Minutes</span></div>
+    <div class="countdown-item"><span class="countdown-number" id="cd-seconds">00</span><span class="countdown-label">Seconds</span></div>
+  </div>
+</section>
+
+<!-- ==========================================
+     STORY
+     ========================================== -->
+<section id="story">
+  <div class="story-grid">
+    <div class="story-image-wrap reveal">
+      <!--
+        ============================================================
+        STORY SECTION IMAGE
+        Add your couple photo inside this div:
+          <img src="couple-photo.jpg" alt="Sarah and James">
+        The div is already styled as a portrait frame.
+        ============================================================
+      -->
+      <div class="story-image-label">Est. 2019 · Paris, France</div>
+    </div>
+
+    <div class="story-text">
+      <span class="section-tag reveal">Our Story</span>
+      <h2 class="section-title reveal reveal-delay-1">A Love Written <em>in the Stars</em></h2>
+      <p class="story-paragraph reveal reveal-delay-2">
+        It began with a chance encounter at a small Parisian café — two strangers who quickly became the best part of each other's world. Six years, four countries, and countless memories later, we're ready to make it forever.
+      </p>
+      <p class="story-paragraph reveal reveal-delay-3">
+        We can't wait to celebrate this new chapter with the people who matter most to us. Your presence will make our day complete.
+      </p>
+      <div class="story-signature reveal reveal-delay-4">Sarah & James</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     PARALLAX BAND 1
+     ========================================== -->
+<div class="parallax-band">
+  <!--
+    ============================================================
+    PARALLAX BAND BACKGROUND IMAGE
+    In <style>, find .parallax-band-bg and replace the
+    background-color/gradient with:
+      background-image: url('your-venue-photo.jpg');
+      background-size: cover;
+      background-position: center;
+    ============================================================
+  -->
+  <div class="parallax-band-bg" id="parallaxBand1"></div>
+  <div class="parallax-band-overlay"></div>
+  <div class="parallax-band-content reveal">
+    <p class="band-quote">"You are my today and all of my tomorrows."</p>
+    <p class="band-attribution">Leo Christopher</p>
+  </div>
+</div>
+
+<!-- ==========================================
+     DETAILS
+     ========================================== -->
+<section id="details">
+  <div class="details-inner">
+    <div class="section-header">
+      <span class="section-tag reveal">Wedding Details</span>
+      <h2 class="section-title reveal reveal-delay-1">Everything You <em>Need to Know</em></h2>
+    </div>
+
+    <div class="details-cards">
+      <div class="detail-card reveal">
+        <div class="detail-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="6" y="10" width="36" height="34" rx="2"/>
+            <path d="M6 20h36M16 6v8M32 6v8"/>
+            <path d="M17 30h14M24 26v8"/>
+          </svg>
+        </div>
+        <div class="detail-card-title">Date & Time</div>
+        <div class="detail-card-text">
+          <strong>September 14, 2025</strong>
+          Ceremony begins at 4:00 PM<br>
+          Doors open at 3:30 PM<br>
+          Reception until midnight
+        </div>
+      </div>
+
+      <div class="detail-card reveal reveal-delay-1">
+        <div class="detail-card-badge">Venue</div>
+        <div class="detail-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M24 4C15.163 4 8 11.163 8 20c0 12 16 28 16 28s16-16 16-28c0-8.837-7.163-16-16-16z"/>
+            <circle cx="24" cy="20" r="5"/>
+          </svg>
+        </div>
+        <div class="detail-card-title">The Venue</div>
+        <div class="detail-card-text">
+          <strong>Villa Oliva, Tuscany</strong>
+          Via dei Colli 14<br>
+          San Miniato, 56028<br>
+          Pisa, Italy
+        </div>
+      </div>
+
+      <div class="detail-card reveal reveal-delay-2">
+        <div class="detail-card-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M24 10c-5.523 0-10 4-10 9s10 20 10 20 10-15 10-20-4.477-9-10-9z"/>
+            <circle cx="24" cy="19" r="3"/>
+            <path d="M10 38h28"/>
+          </svg>
+        </div>
+        <div class="detail-card-title">Dress Code</div>
+        <div class="detail-card-text">
+          <strong>Black Tie Optional</strong>
+          Formal attire preferred.<br>
+          We kindly ask guests to avoid<br>
+          wearing white or cream.
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+      ==================================================
+      MAP EMBED
+      Replace the inner content with a Google Maps iframe:
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=..." 
+          allowfullscreen loading="lazy">
+        </iframe>
+      ==================================================
+    -->
+    <div class="map-wrap reveal">
+      <div class="map-placeholder-text">
+        📍 Map Embed Goes Here
+        <small>Paste your Google Maps iframe inside .map-wrap</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SCHEDULE
+     ========================================== -->
+<section id="schedule">
+  <div class="schedule-inner">
+    <div class="section-header">
+      <span class="section-tag reveal">The Big Day</span>
+      <h2 class="section-title reveal reveal-delay-1">Schedule of <em>Events</em></h2>
+      <p class="section-body reveal reveal-delay-2">Every moment of our day, thoughtfully planned — so you can be fully present for all of it.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-left">
+          <div class="timeline-time">3:30 PM</div>
+          <div class="timeline-event">Guests Arrive</div>
+          <div class="timeline-desc">Welcome drinks served in the garden. Find your seat and say hello.</div>
+        </div>
+        <div class="timeline-center"><div class="timeline-dot"></div></div>
+        <div class="timeline-right"></div>
+      </div>
+
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="timeline-left"></div>
+        <div class="timeline-center"><div class="timeline-dot"></div></div>
+        <div class="timeline-right">
+          <div class="timeline-time">4:00 PM</div>
+          <div class="timeline-event">The Ceremony</div>
+          <div class="timeline-desc">We exchange our vows in the garden of Villa Oliva as the sun begins its descent.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="timeline-left">
+          <div class="timeline-time">5:30 PM</div>
+          <div class="timeline-event">Cocktail Hour</div>
+          <div class="timeline-desc">Champagne, canapés, and golden hour light. The perfect aperitivo Toscano.</div>
+        </div>
+        <div class="timeline-center"><div class="timeline-dot"></div></div>
+        <div class="timeline-right"></div>
+      </div>
+
+      <div class="timeline-item reveal reveal-delay-3">
+        <div class="timeline-left"></div>
+        <div class="timeline-center"><div class="timeline-dot"></div></div>
+        <div class="timeline-right">
+          <div class="timeline-time">7:00 PM</div>
+          <div class="timeline-event">Dinner Reception</div>
+          <div class="timeline-desc">A five-course feast in the candlelit hall, with toasts, music, and laughter.</div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal reveal-delay-4">
+        <div class="timeline-left">
+          <div class="timeline-time">9:30 PM</div>
+          <div class="timeline-event">First Dance & Party</div>
+          <div class="timeline-desc">The dance floor opens. Let's celebrate until the stars say goodnight.</div>
+        </div>
+        <div class="timeline-center"><div class="timeline-dot"></div></div>
+        <div class="timeline-right"></div>
+      </div>
+
+      <div class="timeline-item reveal reveal-delay-5">
+        <div class="timeline-left"></div>
+        <div class="timeline-center"><div class="timeline-dot"></div></div>
+        <div class="timeline-right">
+          <div class="timeline-time">Midnight</div>
+          <div class="timeline-event">Farewell & Sparklers</div>
+          <div class="timeline-desc">Send us off with sparklers and warm wishes as we begin our forever.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Parallax Band 2 -->
+<div class="parallax-band-2">
+  <!--
+    ============================================================
+    PARALLAX BAND 2 BACKGROUND IMAGE
+    In <style>, find .parallax-band-2-bg and replace gradient with:
+      background-image: url('your-rings-or-flowers-photo.jpg');
+    ============================================================
+  -->
+  <div class="parallax-band-2-bg" id="parallaxBand2"></div>
+</div>
+
+<!-- ==========================================
+     RSVP
+     ========================================== -->
+<section id="rsvp">
+  <div class="rsvp-inner">
+    <div class="section-header">
+      <span class="section-tag reveal">Kindly Reply By August 1</span>
+      <h2 class="section-title reveal reveal-delay-1">Will You <em>Join Us?</em></h2>
+      <p class="section-body reveal reveal-delay-2">Please let us know if you'll be celebrating with us. We can't wait to see you there.</p>
+    </div>
+
+    <form class="rsvp-form reveal" id="rsvpForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="r-name">Full Name</label>
+          <input type="text" id="r-name" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="r-email">Email Address</label>
+          <input type="email" id="r-email" placeholder="your@email.com" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="r-guests">Number of Guests</label>
+          <select id="r-guests">
+            <option value="1">1 person (just me)</option>
+            <option value="2">2 people</option>
+            <option value="3">3 people</option>
+            <option value="4">4 people</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Attendance</label>
+          <div class="form-radio-group">
+            <label class="form-radio">
+              <input type="radio" name="attendance" value="yes" checked>
+              Joyfully accepts
+            </label>
+            <label class="form-radio">
+              <input type="radio" name="attendance" value="no">
+              Regretfully declines
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="r-dietary">Dietary Requirements</label>
+        <input type="text" id="r-dietary" placeholder="Any allergies or dietary needs?">
+      </div>
+
+      <div class="form-group">
+        <label for="r-notes">Notes for the Couple</label>
+        <textarea id="r-notes" placeholder="Anything you'd like us to know..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">Send My RSVP</button>
+    </form>
+
+    <div class="form-success" id="rsvpSuccess">
+      <div class="form-success-icon">💌</div>
+      <div class="form-success-title">Thank You!</div>
+      <div class="form-success-text">Your RSVP has been received. We can't wait to celebrate with you.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     GUEST MESSAGES
+     ========================================== -->
+<section id="messages">
+  <div class="messages-inner">
+    <div class="section-header">
+      <span class="section-tag reveal">From Our Loved Ones</span>
+      <h2 class="section-title reveal reveal-delay-1">Leave Us a <em>Message</em></h2>
+      <p class="section-body reveal reveal-delay-2">Share your wishes, advice, or a favourite memory. We'll treasure every word.</p>
+    </div>
+
+    <div class="message-form-wrap reveal">
+      <form class="message-form" id="messageForm">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <input type="text" id="m-name" placeholder="Your name" required>
+          <input type="text" id="m-relation" placeholder="How do you know us? (e.g. College friends)">
+        </div>
+        <textarea id="m-text" placeholder="Write your message for Sarah & James..." required></textarea>
+        <button type="submit" class="btn-message">Send Message</button>
+      </form>
+    </div>
+
+    <div class="messages-grid" id="messagesGrid">
+      <!-- Sample messages -->
+      <div class="message-card reveal">
+        <div class="message-card-heart">♥</div>
+        <p class="message-card-quote">Wishing you both a lifetime of laughter, adventures, and endless love. You two are absolutely perfect for each other.</p>
+        <div class="message-card-author">— Emma & Thomas, Family</div>
+      </div>
+      <div class="message-card reveal reveal-delay-1">
+        <div class="message-card-heart">♥</div>
+        <p class="message-card-quote">I've watched this love story unfold from the very beginning. So happy to see it reach this beautiful chapter.</p>
+        <div class="message-card-author">— Claire, Best Friend</div>
+      </div>
+      <div class="message-card reveal reveal-delay-2">
+        <div class="message-card-heart">♥</div>
+        <p class="message-card-quote">May your home be filled with music, your days with sunshine, and your hearts with joy. Congratulations!</p>
+        <div class="message-card-author">— The Johnson Family</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     REGISTRY
+     ========================================== -->
+<section id="registry">
+  <div class="registry-inner">
+    <div class="section-header">
+      <span class="section-tag reveal">Gift Registry</span>
+      <h2 class="section-title reveal reveal-delay-1">Your Presence is Our <em>Gift</em></h2>
+      <p class="section-body reveal reveal-delay-2">We truly mean that. But if you'd like to celebrate us further, here are a few ideas.</p>
+    </div>
+
+    <div class="registry-grid">
+      <div class="registry-card reveal">
+        <div class="registry-card-icon">🏠</div>
+        <div class="registry-card-name">Our New Home</div>
+        <div class="registry-card-desc">Help us build our nest with items for our new home together.</div>
+        <a href="#" class="registry-card-link">View Registry</a>
+      </div>
+
+      <div class="registry-card reveal reveal-delay-1">
+        <div class="registry-card-icon">✈️</div>
+        <div class="registry-card-name">Honeymoon Fund</div>
+        <div class="registry-card-desc">Contribute to our dream honeymoon adventure in Japan.</div>
+        <a href="#" class="registry-card-link">Contribute</a>
+      </div>
+
+      <div class="registry-card reveal reveal-delay-2">
+        <div class="registry-card-icon">🌸</div>
+        <div class="registry-card-name">Experience Gifts</div>
+        <div class="registry-card-desc">Cooking classes, wine tastings, and memorable moments.</div>
+        <a href="#" class="registry-card-link">Browse Experiences</a>
+      </div>
+    </div>
+
+    <p class="registry-note reveal">
+      "The greatest gift you can give us is sharing in our joy on this special day."
+    </p>
+  </div>
+</section>
+
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
+<footer>
+  <div class="footer-names">Sarah & James</div>
+  <div class="footer-date">September 14, 2025 · Tuscany, Italy</div>
+  <nav class="footer-links">
+    <a href="#story">Our Story</a>
+    <a href="#details">Details</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#rsvp">RSVP</a>
+    <a href="#messages">Messages</a>
+    <a href="#registry">Registry</a>
+  </nav>
+  <div class="footer-credit">Made with love · Sarah & James 2025</div>
+</footer>
+
+<!-- ==========================================
+     JAVASCRIPT
+     ========================================== -->
+<script>
+/* ---- NAV SCROLL EFFECT ---- */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  updateProgress();
+  handleParallax();
+});
+
+/* ---- PROGRESS BAR ---- */
+function updateProgress() {
+  const doc = document.documentElement;
+  const scrolled = doc.scrollTop / (doc.scrollHeight - doc.clientHeight);
+  document.getElementById('progressBar').style.width = (scrolled * 100) + '%';
+}
+
+/* ---- PARALLAX ---- */
+function handleParallax() {
+  const scrollY = window.scrollY;
+
+  // Hero background
+  const heroBg = document.getElementById('heroBg');
+  if (heroBg) {
+    heroBg.style.transform = `scale(1.1) translateY(${scrollY * 0.3}px)`;
+  }
+
+  // Parallax Band 1
+  const band1 = document.getElementById('parallaxBand1');
+  if (band1) {
+    const band1Top = band1.closest('.parallax-band').getBoundingClientRect().top;
+    band1.style.transform = `translateY(${band1Top * -0.25}px)`;
+  }
+
+  // Parallax Band 2
+  const band2 = document.getElementById('parallaxBand2');
+  if (band2) {
+    const band2Top = band2.closest('.parallax-band-2').getBoundingClientRect().top;
+    band2.style.transform = `translateY(${band2Top * -0.2}px)`;
+  }
+}
+
+/* ---- SCROLL REVEAL ---- */
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+/* ---- COUNTDOWN ---- */
+function updateCountdown() {
+  const weddingDate = new Date('2025-09-14T16:00:00');
+  const now = new Date();
+  const diff = weddingDate - now;
+
+  if (diff <= 0) {
+    document.getElementById('cd-days').textContent = '0';
+    document.getElementById('cd-hours').textContent = '0';
+    document.getElementById('cd-minutes').textContent = '0';
+    document.getElementById('cd-seconds').textContent = '0';
+    return;
+  }
+
+  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+  document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+  document.getElementById('cd-minutes').textContent = String(m).padStart(2, '0');
+  document.getElementById('cd-seconds').textContent = String(s).padStart(2, '0');
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* ---- HAMBURGER MENU ---- */
+function toggleMenu() {
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  hamburger.classList.toggle('open');
+  menu.classList.toggle('open');
+  document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+}
+
+/* ---- RSVP FORM ---- */
+document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  this.style.display = 'none';
+  document.getElementById('rsvpSuccess').classList.add('visible');
+
+  // In production: send data to your backend/email service here
+  // Example: 
+  // fetch('/api/rsvp', { method:'POST', body: new FormData(this) })
+});
+
+/* ---- MESSAGE FORM ---- */
+document.getElementById('messageForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('m-name').value;
+  const relation = document.getElementById('m-relation').value;
+  const text = document.getElementById('m-text').value;
+
+  if (!name || !text) return;
+
+  const grid = document.getElementById('messagesGrid');
+  const card = document.createElement('div');
+  card.className = 'message-card visible';
+  card.innerHTML = `
+    <div class="message-card-heart">♥</div>
+    <p class="message-card-quote">${text}</p>
+    <div class="message-card-author">— ${name}${relation ? ', ' + relation : ''}</div>
+  `;
+  grid.insertBefore(card, grid.firstChild);
+
+  this.reset();
+
+  // In production: POST message to your backend for moderation
+});
+
+/* ---- INIT ---- */
+handleParallax();
+</script>
+
+</body>
+</html>
